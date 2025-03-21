@@ -81,16 +81,18 @@ export default function Display() {
         }}
       >
         {lanterns.map((lantern) => (
-          <img
-            key={lantern.id}
-            src="/lantern.png"
-            alt="Lantern"
-            style={{
-              width: "120px",
-              height: "120px",
-              objectFit: "contain",
-            }}
-          />
+          <Box
+          component="img"
+          key={lantern.id}
+          src="/lantern.png"
+          alt="Lantern"
+          sx={{
+            width: "120px",
+            height: "120px",
+            objectFit: "contain",
+            animation: "breathing 3s ease-in-out infinite",
+          }}
+        />        
         ))}
       </Box>
     </Box>
