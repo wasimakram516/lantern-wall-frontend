@@ -87,8 +87,8 @@ export default function Display() {
           src="/lantern.png"
           alt="Lantern"
           sx={{
-            width: "120px",
-            height: "120px",
+            width: "100px",
+            height: "100px",
             objectFit: "contain",
             animation: "breathing 3s ease-in-out infinite",
           }}
