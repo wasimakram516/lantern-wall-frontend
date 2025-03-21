@@ -1,95 +1,101 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client";
+import { Box, Button, Typography, Stack } from "@mui/material";
+import LanIcon from "@mui/icons-material/Lightbulb";
+import SettingsRemoteIcon from "@mui/icons-material/SettingsRemote";
+import WallIcon from "@mui/icons-material/Wallpaper";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const router = useRouter();
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.js</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <Box
+      sx={{
+        position: "relative",
+        width: "100vw",
+        height: "100vh",
+        overflow: "hidden",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        px: 2,
+        textAlign: "center",
+      }}
+    >
+      {/* Background Video */}
+      <video
+        src="/background.mp4"
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
+        style={{
+          position: "absolute",
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          zIndex: -1,
+          filter: "brightness(0.8) blur(2px)",
+        }}
+      />
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+      {/* Content */}
+      <Box
+        sx={{
+          zIndex: 1,
+          backdropFilter: "blur(4px)",
+          p: 4,
+          borderRadius: 4,
+          backgroundColor: "rgba(0,0,0,0.4)",
+          boxShadow: "0 0 30px rgba(255, 255, 255, 0.1)",
+        }}
+      >
+        <Box display="flex" justifyContent="center" alignItems="center" gap={1} mb={2}>
+          <LanIcon sx={{ fontSize: 48 }} color="warning" />
+          <Typography variant="h3" fontWeight="bold" color="white">
+            Lantern Wall
+          </Typography>
+        </Box>
+
+        <Typography variant="h6" color="white" gutterBottom>
+          Choose a mode to begin
+        </Typography>
+
+        <Stack spacing={2} direction="column" alignItems="center" mt={4}>
+          <Button
+            variant="contained"
+            color="warning"
+            startIcon={<SettingsRemoteIcon />}
+            size="large"
+            sx={{
+              width: 260,
+              fontWeight: 600,
+              fontSize: "1.1rem",
+            }}
+            onClick={() => router.push("/controller")}
           >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
+            Go to Controller
+          </Button>
+
+          <Button
+            variant="contained"
+            color="info"
+            startIcon={<WallIcon />}
+            size="large"
+            sx={{
+              width: 260,
+              fontWeight: 600,
+              fontSize: "1.1rem",
+              borderWidth: 2,
+              color: "#fff",
+              borderColor: "#fff",
+            }}
+            onClick={() => router.push("/display")}
           >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+            Go to Wall Display
+          </Button>
+        </Stack>
+      </Box>
+    </Box>
   );
 }
